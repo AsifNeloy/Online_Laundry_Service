@@ -7,6 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-    <p>Welcome</p>
+    <p>Welcome to online laundry service</p>
 </body>
 </html>
