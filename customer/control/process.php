@@ -8,7 +8,9 @@ $Error_pass_cmp = "";
 $Error_gender = "";
 $customer_gender = "";
 $counter = 0;
-if (isset($_REQUEST["submit"])) {
+
+//customer Registration php validation
+if (isset($_REQUEST["submitReg"])) {
     $full_name = $_REQUEST['f_name'];
     $customer_username = $_REQUEST['u_name'];
     $customer_email = $_REQUEST['mail'];
@@ -67,26 +69,48 @@ if (isset($_REQUEST["submit"])) {
 
     if ($counter == 7) {
         $customer_data = array(
-            'Full_name'=>$full_name,
-            'User_name'=>$customer_username,
-            'Email'=>$customer_email,
-            'Phone_number'=>$customer_number,
-            'Password'=>$customer_password,
-            'Confrim_password'=>$Customer_confirm_password,
-            'Gender'=>$customer_gender,
+            'Full_name' => $full_name,
+            'User_name' => $customer_username,
+            'Email' => $customer_email,
+            'Phone_number' => $customer_number,
+            'Password' => $customer_password,
+            'Confrim_password' => $Customer_confirm_password,
+            'Gender' => $customer_gender,
         );
 
         //json work
         $existing_Data = file_get_contents('../data/data.json');
-        $customer_JsonData= json_decode($existing_Data);
+        $customer_JsonData = json_decode($existing_Data);
 
-        $customer_JsonData[]=$customer_data;
+        $customer_JsonData[] = $customer_data;
         $jsondata = json_encode($customer_JsonData, JSON_PRETTY_PRINT);
         if (file_put_contents("../data/data.json", $jsondata)) {
-            echo "<br>Data saved";
+
+            echo "<br>Registration successful !";
+            echo "<html> <a href='login_page.php'> Click Here </a> </html>";
         }
-    }
-    else{
-        echo "Data is not saved !";
+    } else {
+        echo "Registration failed !";
     }
 }
+
+//customer login 
+session_start();
+$customer_data = file_get_contents('../data/data.json');
+$decoded_data = json_decode($customer_data);
+
+if (isset($_POST["submitlog"])) {
+    foreach ($decoded_data as  $key => $udata) {
+
+
+        if ($udata->User_name == $_POST["uname"] || ($udata->Email==$_POST["uname"]) && $udata->Password == $_POST["password"]) {
+
+            $_SESSION["User_name"] = $_POST["uname"];
+            $_SESSION["Password"] = $_POST["password"];
+            header("location: ../View/customer_dashboard.php");
+        }
+    }
+
+    echo "<h4>Your username or password is incorrect !<h4>";
+}
+?>

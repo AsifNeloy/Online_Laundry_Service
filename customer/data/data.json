@@ -4,17 +4,8 @@
         "User_name": "abc",
         "Email": "mdrifat2103@gmail.com",
         "Phone_number": "01798649656",
-        "Password": "qW1!erty",
-        "Confrim_password": "qW1!erty",
-        "Gender": "Male"
-    },
-    {
-        "Full_name": "Alex",
-        "User_name": "abc",
-        "Email": "abc@gmail.com",
-        "Phone_number": "01798649656",
-        "Password": "qW1!erty",
-        "Confrim_password": "qW1!erty",
+        "Password": "aS1!dfgh",
+        "Confrim_password": "aS1!dfgh",
         "Gender": "Male"
     }
 ]

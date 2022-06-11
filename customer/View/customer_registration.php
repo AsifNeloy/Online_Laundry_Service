@@ -58,7 +58,7 @@ include("../control/process.php");
        ?>
       </td></tr>
 </table>
-<br><input type="submit" name="submit" value="Register">
+<br><input type="submit" name="submitReg" value="Register">
        <input type="Reset" name="Reset" value="Reset">
 </form>
 </body>
